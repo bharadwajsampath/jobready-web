@@ -1,0 +1,35 @@
+﻿@model Models.ViewModels.ClassListViewModel
+
+<tr>
+    <td colspan="4"></td>
+</tr>
+<tr>
+    <td>@Model.PartyId</td>
+    <td>
+        @Model.FullName.ToUpper()
+
+    </td>
+
+    <td>
+        @if (Model.IsMarked)
+        {
+            var presentText = Model.IsPresent ? "PRESENT" : "ABSENT";
+            var marqueeText = $"The student is {presentText} and the trainer notes are : {Model.Notes} ";
+            <div class="chip light-green">
+                <marquee behavior="scroll" direction="left">@marqueeText</marquee>
+            </div>
+        }
+        else
+        {
+            <div class="chip red">
+                <i class="material-icons small">not_interested</i>
+            </div>
+
+        }
+    </td>
+    <td>
+
+        <a data-target="modal1" data-fullname="@Model.FullName" data-partyid=@Html.Raw(Model.PartyId) data-eventid=@Html.Raw(Model.EventId) data-courseid=@Html.Raw(Model.CourseName) class="btn btn-floating btn-large waves-effect waves-light blue btnmodal"><i class="material-icons">settings</i></a>
+    </td>
+</tr>
+

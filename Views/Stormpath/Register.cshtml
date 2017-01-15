@@ -1,0 +1,47 @@
+﻿@model Stormpath.Owin.Abstractions.ViewModel.RegisterFormViewModel
+@using System
+@using System.Linq
+@using Stormpath.Owin.Abstractions
+<div class="container custom-container">
+    <div class="va-wrapper">
+        <div class="view registration-view container">
+            <div class="box row">
+                <div class="col-sm-12">
+                    <div class="header">
+                        <span>Create Account</span>
+                    </div>
+                    @if (Model.Errors.Any())
+                    {
+                        <div class="alert alert-danger">
+                            @foreach (var error in Model.Errors)
+                            {
+                                <p>@error</p>
+                            }
+                        </div>
+                    }
+                    <form method="post" role="form" class="registration-form form-horizontal sp-form">
+                        <input name="@StringConstants.StateTokenName" type="hidden" value="@Model.StateToken" />
+
+                        @foreach (var field in Model.Form.Fields)
+                        {
+                            <div form-group="true" class="form-group @($"group-{field.Name}")">
+                                <label class="col-sm-4">@field.Label</label>
+                                <div class="col-sm-8">
+                                    <input placeholder="@field.Placeholder"
+                                           name="@field.Name"
+                                           type="@field.Type"
+                                           class="form-control"
+                                           value="@(Model.FormData.Get(field.Name) ?? string.Empty)"
+                                           @(field.Required ? "required" : string.Empty)>
+                                </div>
+                            </div>
+
+                        }
+                        <button type="submit" class="btn btn-register btn-sp-green">Create Trainer</button>
+                    </form>
+                </div>
+            </div>
+            <a href="@(Model.LoginUri + "?"+ @StringConstants.StateTokenName + "=" + @Model.StateToken)" class="to-login">Back to Log In</a>
+        </div>
+    </div>
+</div>

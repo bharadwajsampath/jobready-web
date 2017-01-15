@@ -1,0 +1,65 @@
+﻿@model List<Models.ViewModels.ClassListViewModel>
+
+
+
+<div class="row">
+    <h4><i class="material-icons medium">supervisor_account</i>@Model.FirstOrDefault(x => x.IsTrainer).FullName&nbsp;<small>(@Model.FirstOrDefault(x => x.IsTrainer).PartyId)</small></h4>
+    <hr/>
+</div>
+
+<table class="table">
+    <thead>
+    <th>PartyID</th>
+    <th>Full Name</th>
+    <th>Attendance</th>
+    </thead>
+    <tbody>
+        @foreach (var student in @Model.Where(x => x.IsTrainer == false))
+        {
+            @Html.Partial("_ClassListRow", student);
+
+        }
+    </tbody>
+
+</table>
+
+
+@*<a class="btn waves-effect waves-light center" asp-route-courseNumber="@Model.First().CourseName" asp-route-eventId="@Model.First().EventId" asp-action="ExportAttendance" asp-controller="Event" name="action">
+    Send the attendance to BCA via Email
+    <i class="material-icons right">send</i>
+</a>*@
+
+<div class="progress-spinner">
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("_AttendanceModal")
+
+
+@section Scripts{
+    <script>
+        $('#test').click(function () {
+            var data = {};
+            var model = @Html.Raw(Json.Serialize(Model.First()));
+            if (model) {
+                data.courseName = model.courseName;
+                data.eventId = model.eventId;
+                data.partyId = "someparty";
+                var data = $.get('/Event/GetAttendanceForTheParty', data, function () {
+                    alert('success');
+                });
+
+            }
+        });
+    </script>
+
+}

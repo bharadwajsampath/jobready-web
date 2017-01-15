@@ -1,0 +1,20 @@
+﻿@model Models.ViewModels.CourseEventRoot
+
+<div class="row">
+    <div class="col s12 m12">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">@Model.Course.coursescopename</span>
+                <div>
+                    <p class="card-text">Event/Group Name : @Model.Event.title</p>
+                    <p class="card-text"><span class="tag tag-primary">Date : @Convert.ToDateTime(@Model.Event.starttime).ToString("D")</span></p>
+                    <p class="card-text">Start Time : @Convert.ToDateTime(@Model.Event.starttime).TimeOfDay</p>
+                    <p class="card-text">End Time : @Convert.ToDateTime(@Model.Event.endtime).TimeOfDay</p>
+                </div>
+                <div class="card-action">
+                    <a asp-action="ClassList" asp-route-eventId="@Model.Event.EventId" asp-route-courseName="@Model.Course.coursename" asp-controller="Event" class="waves-effect waves-light btn pull-right">Class List &nbsp;<i class="material-icons right">skip_next</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

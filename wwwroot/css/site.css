@@ -1,0 +1,126 @@
+﻿@import 'glyphicons.css';
+
+
+@font-face {
+	font-family: Roboto-Medium;
+	src: url('../fonts/roboto/Roboto-Medium.eot'), url('../fonts/roboto/Roboto-Medium.ttf') format('truetype'), url('../fonts/roboto/Roboto-Medium.woff');
+}
+
+
+body {
+    padding-bottom: 20px;
+    font-family:Roboto-Medium
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    margin-top:20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"]
+{
+    width: 100%;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+  /* Hide captions */
+  .carousel-caption {
+    display: none
+  }
+}
+
+
+
+hr{
+    border-bottom:2px solid #0275d8;
+}
+
+
+.badge-success{
+    background-color: green;
+}
+
+.badge-error{
+    background-color: red;
+}
+
+footer{
+    bottom:0;
+    position:relative;
+    width:50%;
+    float:right;
+}
+
+.ui-timepicker-standard{
+    top: 173.672px !important;
+    height: 211px !important;
+    width: 280px !important;
+    z-index: 99999 !important;
+    cursor: default !important;
+}
+
+.switch{
+    padding:20px;
+}
+
+.badge{
+    position:relative!important;
+
+}
+
+span.badge.new{
+    font-size:30px;
+}
+
+nav{
+    background-color:#26a69a;
+}
+
+
+@media(max-width: 480px){
+    h4{
+        font-size:20px;
+        box-sizing:content-box;
+    }
+}
+
+.login-card{
+    width:50%;
+    margin:auto;
+}
+@media(max-width: 780px){
+    .login-card {
+        width: 100%;
+    }
+}
+
+input, select, textarea{
+    max-width: 100%;
+}
+
+.modal-content{
+    overflow-y:hidden !important;
+}
+
+.modal.bottom-sheet{
+    max-height:90% !important;
+    height:90% !important;
+}
